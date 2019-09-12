@@ -24,8 +24,6 @@ import (
 )
 
 func TestExtract(t *testing.T) {
-	setupLogging(nil, os.Stderr, true, false)
-
 	f, err := os.Open("../testdata/foo.cpio")
 	if err != nil {
 		t.Fatal(err)
@@ -35,14 +33,11 @@ func TestExtract(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	logger.Debugf("using destdir: %s", tmpdir)
 
 	hf := iotest.HalfReader(f)
 	if err := Extract(hf, tmpdir); err != nil {
 		t.Fatal(err)
 	}
-
-	logger.Debugf("Test second extract on existing directory using destdir: %s", tmpdir)
 
 	if f, err = os.Open("../testdata/foo.cpio"); err != nil {
 		t.Fatal(err)
