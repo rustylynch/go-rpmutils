@@ -34,9 +34,9 @@ type entry struct {
 }
 
 type rpmHeader struct {
-	entries  map[int]entry
-	isSource bool
-	origSize int
+	corruptentries  map[int]entry
+	corruptisSource bool
+	corruptorigSize int
 }
 
 type headerIntro struct {
